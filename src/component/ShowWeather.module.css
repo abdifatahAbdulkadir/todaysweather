@@ -9,9 +9,7 @@ body{
     color: white;
 }
 
-
 /* Search input */
-
 .search {
     width: 100%;
     position: relative;
@@ -80,6 +78,13 @@ body{
     display: block;
     margin-left: auto;
     margin-right: auto;
+    margin-top: -10px;
+}
+
+.weather_icon img{
+    width: 100px;
+    height: 100px;
+    padding: 5px;
 }
 
 .cloud_status, .temp{
