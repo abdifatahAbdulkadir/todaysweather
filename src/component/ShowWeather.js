@@ -1,9 +1,7 @@
-import React, {Component, useEffect, useState} from "react";
+import React, {Component, useState} from "react";
 import Axios from 'axios'
 import {GoSearch} from 'react-icons/go';
-
 import styles from './ShowWeather.module.css'
-
 
 function ShowWeather() {
 
@@ -24,10 +22,6 @@ function ShowWeather() {
       setCity("")
       console.log(e)
     }
-  }
-
-  function showDate(){
-    return new Date().toJSON().slice(0,10).replace(/-/g,'/')
   }
 
   function errorHandler() {
@@ -69,7 +63,6 @@ function ShowWeather() {
             <div><i className="fas fa-map-marker-alt"/></div>
             {weather && weather.sys && <h3>{weather.name}, {weather.sys.country}</h3>}
           </div>
-          <div>{showDate()}</div>
           <div className={styles.weather_icon}>
 
             {weather.weather &&
