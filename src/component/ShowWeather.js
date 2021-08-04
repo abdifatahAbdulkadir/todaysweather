@@ -3,7 +3,6 @@ import Axios from 'axios'
 import {GoSearch} from 'react-icons/go';
 
 import styles from './ShowWeather.module.css'
-import cloudSvg from '../images/cloud.svg'
 
 
 function ShowWeather() {
@@ -27,6 +26,10 @@ function ShowWeather() {
     }
   }
 
+  function showDate(){
+    return new Date().toJSON().slice(0,10).replace(/-/g,'/')
+  }
+
   function errorHandler() {
     return <div className={styles.error} role="alert">
       {error}
@@ -34,7 +37,7 @@ function ShowWeather() {
   }
 
   function showWeatherCard(){
-    setActive(!active)
+    return setActive(!active)
   }
 
   return (
@@ -45,25 +48,28 @@ function ShowWeather() {
             className={styles.searchTerm}
             type="text"
             name="weatherCity"
-            placeholder="Search City"
+            placeholder="City, Country or only City"
             onChange={(e) => setCity(e.target.value)}
             required
           />
           <button type="submit" className={styles.searchButton} onClick={() => {
-
+            {
+              !active && showWeatherCard()
+            }
           }}>
             <a><GoSearch/></a>
           </button>
         </form>
         <div>{errorHandler()}</div>
       </div>
+      {active &&
       <div className={styles.weather_container}>
         <div className={styles.inner_container}>
           <div className={styles.location}>
             <div><i className="fas fa-map-marker-alt"/></div>
             {weather && weather.sys && <h3>{weather.name}, {weather.sys.country}</h3>}
-
           </div>
+          <div>{showDate()}</div>
           <div className={styles.weather_icon}>
 
             {weather.weather &&
@@ -82,6 +88,7 @@ function ShowWeather() {
           </div>
         </div>
       </div>
+      }
     </div>
   )
 }
